@@ -1,4 +1,5 @@
 import bannerImage from "../../assets/banner.png"
+import Button from "../../components/Button"
 
 const Hero = () => {
   return (
@@ -14,7 +15,7 @@ const Hero = () => {
           to captivating memoirs, this week&apos;s new releases offer something
           for everyone.
         </p>
-        <button className="btn-primary">Subscribe</button>
+        <Button title="Subscribe" className="w-fit px-14 text-black font-bold" />
       </div>
     </section>
   )

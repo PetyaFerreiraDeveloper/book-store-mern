@@ -8,6 +8,7 @@ import { IoPersonOutline } from "react-icons/io5"
 import { IoHeartOutline } from "react-icons/io5"
 
 import avatarImg from "../assets/avatar.png"
+import Button from "./Button"
 
 const navigation = [
   { name: "Dahsboard", href: "/dashboard" },
@@ -56,8 +57,16 @@ const Navbar = () => {
                 <div className="absolute right-0 bg-white shadow-lg rounded-md w-48 mt-2 py-4 z-40">
                   <ul className="py-2">
                     {navigation.map((nav) => (
-                      <li key={nav.name} onClick={() => setIsDropdownOpen(false)}>
-                        <Link to={nav.href} className=" block py-2 px-4 hover:bg-slate-300">{nav.name}</Link>
+                      <li
+                        key={nav.name}
+                        onClick={() => setIsDropdownOpen(false)}
+                      >
+                        <Link
+                          to={nav.href}
+                          className=" block py-2 px-4 hover:bg-slate-300"
+                        >
+                          {nav.name}
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -77,10 +86,7 @@ const Navbar = () => {
           <BsCart3 className="w-6 h-6" />
         </button>
         <div className="hidden lg:block">
-          <button className="btn-primary flex items-center gap-5">
-            <BsCart3 className="w-6 h-6" />
-            <span className="font-semibold">0</span>
-          </button>
+          <Button title={0} icon={<BsCart3 className="w-6 h-6" />} />
         </div>
       </nav>
     </header>
