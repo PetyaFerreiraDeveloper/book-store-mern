@@ -1,4 +1,13 @@
 import { useEffect, useState } from "react"
+import { Swiper, SwiperSlide } from "swiper/react"
+import { Pagination, Navigation } from "swiper/modules"
+
+// Import Swiper styles
+import "swiper/css"
+import "swiper/css/pagination"
+import "swiper/css/navigation"
+import "../../App.css"
+
 import BookCard from "../books/BookCard"
 
 const categories = [
@@ -43,11 +52,38 @@ const TopSellers = () => {
         </select>
       </div>
 
-      <section className="flex flex-col items-center gap-10 md:grid md:grid-cols-2 xl:grid-cols-3">
-        {filteredBook.map((book, index) => (
-          <BookCard book={book} key={index} />
-        ))}
-      </section>
+      <Swiper
+        slidesPerView={1}
+        spaceBetween={30}
+        breakpoints={{
+          640: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 2,
+            spaceBetween: 50,
+          },
+          1180: {
+            slidesPerView: 3,
+            spaceBetween: 50,
+          },
+        }}
+        navigation={true}
+        modules={[Pagination, Navigation]}
+        className="mySwiper"
+      >
+        {filteredBook.length > 0 &&
+          filteredBook.map((book) => (
+            <SwiperSlide key={book._id}>
+              <BookCard book={book} />
+            </SwiperSlide>
+          ))}
+      </Swiper>
     </div>
   )
 }

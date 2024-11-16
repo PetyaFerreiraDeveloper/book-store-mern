@@ -9,17 +9,17 @@ const BookCard = ({
   book: { coverImage, description, newPrice, oldPrice, title, _id },
 }) => {
   return (
-    <article className="flex flex-col gap-10 lg:flex-row lg:items-end">
-      <div className="">
+    <article className="flex flex-col gap-10 md:gap-0 md:flex-row md:items-end">
+      <div className="sm:h-72 sm:flex-shrink-0 border rounded-md">
         <Link to={`/books/${_id}`}>
           <img
             src={`${getImgUrl(coverImage)}`}
             alt={title}
-            className="object-cover h-[250px] w-[180px] hover:scale-105 transition-all duration-300"
+            className="object-cover w-full hover:scale-105 transition-all duration-300"
           />
         </Link>
       </div>
-      <div className="flex flex-col gap-6 items-start max-w-[220px]">
+      <div className="flex flex-col gap-6 items-start mb-10 px-4">
         <div className="flex flex-col gap-4">
           <Link to={`/books/${_id}`}>
             <h3 className="font-semibold mb-4 line-clamp-1">{title}</h3>
@@ -39,7 +39,7 @@ const BookCard = ({
 
 BookCard.propTypes = {
   book: PropTypes.shape({
-    category: PropTypes.string, // Define expected type (e.g., string, number)
+    category: PropTypes.string, 
     coverImage: PropTypes.string,
     description: PropTypes.string,
     newPrice: PropTypes.number,
