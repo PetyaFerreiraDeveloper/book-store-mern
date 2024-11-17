@@ -22,7 +22,7 @@ const BookCard = ({
       <div className="flex flex-col gap-6 items-start mb-10 px-4">
         <div className="flex flex-col gap-4">
           <Link to={`/books/${_id}`}>
-            <h3 className="font-semibold mb-4 line-clamp-1">{title}</h3>
+            <h3 className="font-semibold mb-4 line-clamp-1 hover:text-blue-500">{title}</h3>
             <p className="text-sm line-clamp-2 text-slate-600">{description}</p>
           </Link>
           <div className="flex gap-2">
