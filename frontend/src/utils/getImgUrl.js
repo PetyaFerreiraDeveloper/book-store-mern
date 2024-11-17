@@ -3,7 +3,7 @@ function getImgUrl(img) {
 }
 
 function getNewsImgUrl(img) {
-  return new URL(`../assets/news/${img}`, import.meta.url)
+  return new URL(`../assets/news/${img}.png`, import.meta.url)
 }
 
 export { getImgUrl, getNewsImgUrl }
