@@ -6,9 +6,10 @@ export default {
       colors: {
         primary: "#FFCE1A",
         secondary: "#0D0842",
-        blackBg: "#F3F3F3",
+        lightBg: "#F3F3F3",
+        darkBg: "#02102e",
         favorite: "#FF5841",
-        gray: "#EAEAEA"
+        gray: "#EAEAEA",
       },
       fontFamily: {
         primary: ["Montserrat", "serif"],
