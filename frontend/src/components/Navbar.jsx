@@ -19,7 +19,6 @@ const navigation = [
 
 const Navbar = () => {
   const [isDropdpwnOpen, setIsDropdownOpen] = useState(false)
-  console.log(isDropdpwnOpen)
 
   const currentUser = true
   return (
@@ -86,7 +85,7 @@ const Navbar = () => {
           <BsCart3 className="w-6 h-6" />
         </button>
         <div className="hidden lg:block">
-          <Button title={0} icon={<BsCart3 className="w-6 h-6" />} />
+          <Button title={'0'} icon={<BsCart3 className="w-6 h-6" />} />
         </div>
       </nav>
     </header>
