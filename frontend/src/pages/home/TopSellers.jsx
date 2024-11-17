@@ -32,10 +32,9 @@ const TopSellers = () => {
     selectedCategory === "Choose a genre"
       ? books
       : books.filter((book) => book.category === selectedCategory.toLowerCase())
-  console.log(filteredBook)
 
   return (
-    <div className="py-10 flex flex-col justify-start gap-5">
+    <section className="flex flex-col justify-start gap-5">
       <h2 className="font-semibold text-3xl">Top Sellers</h2>
       <div className="mb-8 flex items-center">
         <select
@@ -84,7 +83,7 @@ const TopSellers = () => {
             </SwiperSlide>
           ))}
       </Swiper>
-    </div>
+    </section>
   )
 }
 
