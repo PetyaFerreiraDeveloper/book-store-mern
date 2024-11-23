@@ -1,7 +1,8 @@
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import { useState } from "react"
-import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5"
+import { IoEyeOffOutline, IoEyeOutline, IoLogoGoogle } from "react-icons/io5"
+import { Link } from "react-router-dom"
 
 gsap.registerPlugin(useGSAP)
 
@@ -46,10 +47,10 @@ const Login = () => {
     <div className="flex flex-col gap-20 justify-center items-center h-full">
       <h1 className="text-xl font-bold">Please Login</h1>
       <form
-        className="flex flex-col gap-10 items-start"
+        className="flex flex-col gap-10 items-start md:p-10 rounded-lg md:shadow-lg"
         onSubmit={handleSubmit}
       >
-        <div className="relative">
+        <div className="relative w-full">
           <label htmlFor="email" className="emailLabel absolute top-2 left-4">
             Email
           </label>
@@ -58,13 +59,13 @@ const Login = () => {
             name="email"
             id="email"
             value={email}
-            className=" border border-slate-300 shadow-lg rounded-lg px-4 py-2 w-64"
+            className=" border border-slate-300 shadow-lg rounded-lg px-4 py-2 w-full"
             onFocus={onInputFocus}
             onBlur={onInputBlur}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div className="relative">
+        <div className="relative w-full">
           <label
             htmlFor="password"
             className="passwordLabel absolute top-2 left-4"
@@ -76,17 +77,30 @@ const Login = () => {
             name="password"
             id="password"
             value={password}
-            className="border border-slate-300 shadow-lg rounded-lg px-4 py-2 w-64"
+            className="border border-slate-300 shadow-lg rounded-lg px-4 py-2 w-full"
             onFocus={onInputFocus}
             onBlur={onInputBlur}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button onClick={handleTogglePasswordVisibility} className="absolute top-3 right-3">
+          <button
+            onClick={handleTogglePasswordVisibility}
+            className="absolute top-3 right-3"
+          >
             {showPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
           </button>
         </div>
         <button className="bg-primary text-darkBg rounded-lg px-4 py-2 hover:bg-darkBg hover:text-primary transition-all duration-200">
           Login
+        </button>
+        <p className="">
+          <span className="mr-1">Don&apos;t have an account? Please</span>
+          <span className="text-blue-700">
+            <Link to="/register">Register Here</Link>
+          </span>
+        </p>
+        <button className="flex gap-4 items-center w-full justify-center bg-googleBlue text-white py-2 rounded-lg">
+          <IoLogoGoogle />
+          <span>Sign in with Google</span>
         </button>
       </form>
     </div>

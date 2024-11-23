@@ -10,6 +10,7 @@ export default {
         darkBg: "#02102e",
         favorite: "#FF5841",
         gray: "#EAEAEA",
+        googleBlue: "#4285F4",
       },
       fontFamily: {
         primary: ["Montserrat", "serif"],
