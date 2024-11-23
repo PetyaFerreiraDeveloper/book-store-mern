@@ -3,12 +3,12 @@ import { Link } from "react-router-dom"
 
 import { BsCart3 } from "react-icons/bs"
 import { HiOutlineMenuAlt1 } from "react-icons/hi"
-import { IoSearchSharp } from "react-icons/io5"
 import { IoPersonOutline } from "react-icons/io5"
 import { IoHeartOutline } from "react-icons/io5"
 
 import avatarImg from "../assets/avatar.png"
 import Button from "./Button"
+import SearchNavbar from "./SearchNavbar"
 
 const navigation = [
   { name: "Dahsboard", href: "/dashboard" },
@@ -20,26 +20,18 @@ const navigation = [
 const Navbar = () => {
   const [isDropdpwnOpen, setIsDropdownOpen] = useState(false)
 
-  const currentUser = true
+  const currentUser = false
+
   return (
     <header className="flex justify-between xl:justify-start xl:gap-24 items-center px-6 xl:px-24 pt-9 pb-5 w-full">
       <Link className="p-2" to="/">
         <HiOutlineMenuAlt1 className="w-6 h-6" />
       </Link>
 
-      <div className="flex items-center gap-4 relative bg-gray px-4 py-2 rounded-xl">
-        <button>
-          <IoSearchSharp className=" " />
-        </button>
-        <input
-          type="text"
-          placeholder="What are you looking for?"
-          className="bg-gray placeholder:text-sm"
-        />
-      </div>
+      <SearchNavbar />
 
-      <nav className="flex items-center xl:ml-auto gap-8">
-        <div className="hidden xl:block relative">
+      <nav className="flex items-center lg:ml-auto gap-8">
+        <div className="hidden lg:block relative">
           {currentUser ? (
             <>
               <button
@@ -78,14 +70,14 @@ const Navbar = () => {
             </Link>
           )}
         </div>
-        <button className="hidden xl:block">
+        <button className="hidden lg:block">
           <IoHeartOutline className="w-6 h-6" />
         </button>
-        <button className="lg:hidden p-2">
+        <Link to="/cart" className="lg:hidden p-2">
           <BsCart3 className="w-6 h-6" />
-        </button>
+        </Link>
         <div className="hidden lg:block">
-          <Button title={'0'} icon={<BsCart3 className="w-6 h-6" />} />
+          <Button title={"0"} icon={<BsCart3 className="w-6 h-6" />} />
         </div>
       </nav>
     </header>
