@@ -47,6 +47,8 @@ const Login = () => {
     console.log("errors:", errors)
   }
 
+  const handleGoogleSignIn = () => {}
+
   return (
     <div className="flex flex-col gap-20 justify-center items-center h-full">
       <h1 className="text-xl font-bold">Please Login</h1>
@@ -108,17 +110,20 @@ const Login = () => {
         >
           Login
         </button>
-        <p className="">
-          <span className="mr-1">Don&apos;t have an account? Please</span>
-          <span className="text-blue-700">
-            <Link to="/register">Register Here</Link>
-          </span>
-        </p>
-        <button className="flex gap-4 items-center w-full justify-center bg-googleBlue text-white py-2 rounded-lg">
-          <IoLogoGoogle />
-          <span>Sign in with Google</span>
-        </button>
       </form>
+      <p className="">
+        <span className="mr-1">Don&apos;t have an account? Please</span>
+        <span className="text-blue-700">
+          <Link to="/register">Register Here</Link>
+        </span>
+      </p>
+      <button
+        className="flex gap-4 items-center w-full justify-center bg-googleBlue text-white py-2 rounded-lg"
+        onClick={handleGoogleSignIn}
+      >
+        <IoLogoGoogle />
+        <span>Sign in with Google</span>
+      </button>
     </div>
   )
 }
