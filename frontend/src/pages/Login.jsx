@@ -3,18 +3,21 @@ import { useGSAP } from "@gsap/react"
 import { useState } from "react"
 import { IoEyeOffOutline, IoEyeOutline, IoLogoGoogle } from "react-icons/io5"
 import { Link } from "react-router-dom"
+import { useForm } from "react-hook-form"
 
 gsap.registerPlugin(useGSAP)
 
 const Login = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ mode: "onBlur" })
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log("Email:", email)
-    console.log("Password:", password)
+  const onSubmit = (data) => {
+    console.log("data:", data)
+    console.log("errors:", errors)
   }
 
   const handleTogglePasswordVisibility = () => {
@@ -32,15 +35,16 @@ const Login = () => {
     }
   }
 
-  const onInputBlur = () => {
-    if (email === "") {
-      gsap.to(".emailLabel", { y: 0 })
-      gsap.to(".emailLabel", { x: 0 })
+  const onInputBlur = (e) => {
+    const inputName = e.target.name
+
+    if (inputName === "email") {
+      gsap.to(".emailLabel", { y: 0, x: 0 })
     }
-    if (password === "") {
-      gsap.to(".passwordLabel", { y: 0 })
-      gsap.to(".passwordLabel", { x: 0 })
+    if (inputName === "password") {
+      gsap.to(".passwordLabel", { y: 0, x: 0 })
     }
+    console.log("errors:", errors)
   }
 
   return (
@@ -48,7 +52,7 @@ const Login = () => {
       <h1 className="text-xl font-bold">Please Login</h1>
       <form
         className="flex flex-col gap-10 items-start md:p-10 rounded-lg md:shadow-lg"
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <div className="relative w-full">
           <label htmlFor="email" className="emailLabel absolute top-2 left-4">
@@ -58,12 +62,16 @@ const Login = () => {
             type="email"
             name="email"
             id="email"
-            value={email}
             className=" border border-slate-300 shadow-lg rounded-lg px-4 py-2 w-full"
             onFocus={onInputFocus}
-            onBlur={onInputBlur}
-            onChange={(e) => setEmail(e.target.value)}
+            {...register("email", {
+              required: "Email is required",
+              onBlur: (e) => onInputBlur(e),
+            })}
           />
+          {errors.email && (
+            <p className="text-red-500 text-sm">{errors.email.message}</p>
+          )}
         </div>
         <div className="relative w-full">
           <label
@@ -76,11 +84,12 @@ const Login = () => {
             type={showPassword ? "text" : "password"}
             name="password"
             id="password"
-            value={password}
             className="border border-slate-300 shadow-lg rounded-lg px-4 py-2 w-full"
             onFocus={onInputFocus}
-            onBlur={onInputBlur}
-            onChange={(e) => setPassword(e.target.value)}
+            {...register("password", {
+              required: "Password is required",
+              onBlur: (e) => onInputBlur(e),
+            })}
           />
           <button
             onClick={handleTogglePasswordVisibility}
@@ -88,8 +97,15 @@ const Login = () => {
           >
             {showPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
           </button>
+
+          {errors.password && (
+            <p className="text-red-500 text-sm">{errors.password.message}</p>
+          )}
         </div>
-        <button className="bg-primary text-darkBg rounded-lg px-4 py-2 hover:bg-darkBg hover:text-primary transition-all duration-200">
+
+        <button
+          className={`bg-primary text-darkBg rounded-lg px-4 py-2 hover:bg-darkBg hover:text-primary transition-all duration-200 `}
+        >
           Login
         </button>
         <p className="">
